@@ -3,9 +3,9 @@ using MaterialSkin.Controls;
 
 namespace LP1___Projeto_Final
 {
-    public partial class Form1 : MaterialForm
+    public partial class FHome : MaterialForm
     {
-        public Form1()
+        public FHome()
         {
             InitializeComponent();
 
