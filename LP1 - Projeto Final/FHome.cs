@@ -14,5 +14,11 @@ namespace LP1___Projeto_Final
             materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
+
+        private void btnNotas_Click(object sender, EventArgs e)
+        {
+            Notas.FNotas fm = new Notas.FNotas();
+            fm.Show();
+        }
     }
 }

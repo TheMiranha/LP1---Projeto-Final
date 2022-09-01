@@ -90,6 +90,7 @@
             this.btnNotas.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.btnNotas.UseAccentColor = false;
             this.btnNotas.UseVisualStyleBackColor = true;
+            this.btnNotas.Click += new System.EventHandler(this.btnNotas_Click);
             // 
             // materialCard2
             // 
