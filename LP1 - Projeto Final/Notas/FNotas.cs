@@ -27,10 +27,30 @@ namespace LP1___Projeto_Final.Notas
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            DateTime data = DateTime.Now - TimeSpan.FromDays(1);
-            Nota temp = new Nota("Título", "Desc", data, true);
-            MaterialCard modelo = generateModelo(temp);
-            this.LP.Controls.Add(modelo);
+            //DateTime data = DateTime.Now - TimeSpan.FromDays(1);
+            //Nota temp = new Nota("Título", "Desc", data, true);
+            //MaterialCard modelo = generateModelo(temp);
+            //this.LP.Controls.Add(modelo);
+            MaterialForm fadd = new FNotaAdd(UpdateNotas);
+            fadd.Show();
+        }
+
+        public void AddNota(string title, string description, DateTime date, Boolean check)
+        {
+            Nota temp = new Nota(title, description, date, check);
+            Manager.AddNota(temp);
+            UpdateNotas();
+        }
+
+        private int UpdateNotas()
+        {
+            this.LP.Controls.Clear();
+            foreach (Nota temp in Manager.notas)
+            {
+                MaterialCard model = generateModelo(temp);
+                this.LP.Controls.Add(model);
+            }
+            return 0;
         }
 
 
