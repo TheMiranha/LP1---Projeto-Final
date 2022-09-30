@@ -78,5 +78,37 @@ namespace LP1___Projeto_Final.Notas
                 return false;
             }
         }
+
+        public void UpdateNote(String title, Nota nota)
+        {
+            try
+            {
+                SQL.LimparParametros();
+                SQL.AdicionarParametros("@title", nota.Title);
+                SQL.AdicionarParametros("@description", nota.Description);
+                SQL.AdicionarParametros("@ready", nota.Check);
+                SQL.AdicionarParametros("@date", GetTimestamp(nota.Date));
+                SQL.AdicionarParametros("@c", title);
+                SQL.ExecutarManipulacao(CommandType.Text, "UPDATE notes SET title = @title, description = @description, ready = @ready, date = @date WHERE title = @c");
+            } catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        public void DeleteNote(Nota nota)
+        {
+            try
+            {
+                SQL.LimparParametros();
+                SQL.AdicionarParametros("@title", nota.Title);
+                SQL.ExecutarManipulacao(CommandType.Text, "DELETE FROM notes where title = @title"); ;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
     }
 }

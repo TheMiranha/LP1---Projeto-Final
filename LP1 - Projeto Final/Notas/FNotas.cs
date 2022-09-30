@@ -1,6 +1,7 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using Classes;
+using System.Drawing.Text;
 
 namespace LP1___Projeto_Final.Notas
 {
@@ -22,6 +23,26 @@ namespace LP1___Projeto_Final.Notas
             MaterialForm fadd = new FNotaAdd(UpdateNotas);
             UpdateNotas();
             fadd.Show();
+        }
+
+        private int UpdateNote(Nota primary, Nota up)
+        {
+            notasDAO.UpdateNote(primary.Title, up);
+            UpdateNotas();
+            return 1;
+        }
+
+        private void OpenEditor(Nota nota)
+        {
+            FNotaAtualizar form = new FNotaAtualizar(nota, UpdateNote, DeleteNote);
+            form.Show();
+        }
+
+        private int DeleteNote(Nota nota)
+        {
+            notasDAO.DeleteNote(nota);
+            UpdateNotas();
+            return 1;
         }
 
         private int UpdateNotas(Nota x)
@@ -110,13 +131,13 @@ namespace LP1___Projeto_Final.Notas
             Modelo_Card_Button.Depth = 0;
             Modelo_Card_Button.HighEmphasis = true;
             Modelo_Card_Button.Icon = null;
-            Modelo_Card_Button.Location = new System.Drawing.Point(310, 73);
+            Modelo_Card_Button.Location = new System.Drawing.Point(300, 73);
             Modelo_Card_Button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             Modelo_Card_Button.MouseState = MaterialSkin.MouseState.HOVER;
             Modelo_Card_Button.NoAccentTextColor = System.Drawing.Color.Empty;
             Modelo_Card_Button.Size = new System.Drawing.Size(64, 36);
             Modelo_Card_Button.TabIndex = 0;
-            Modelo_Card_Button.Text = "Ver";
+            Modelo_Card_Button.Text = "Editar";
             Modelo_Card_Button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             Modelo_Card_Button.UseAccentColor = false;
             Modelo_Card_Button.UseVisualStyleBackColor = true;
@@ -133,6 +154,11 @@ namespace LP1___Projeto_Final.Notas
             materialCard1.Controls.Add(Modelo_Card_Date);
             materialCard1.Controls.Add(Modelo_Card_Title);
             materialCard1.Controls.Add(Modelo_Card_Button);
+            Modelo_Card_Button.Click += new EventHandler(activate);
+            void activate(object sender, EventArgs e)
+            {
+                this.OpenEditor(nota);
+            }
             return materialCard1;
         }
 
