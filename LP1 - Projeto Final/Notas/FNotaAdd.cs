@@ -1,6 +1,7 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System.Runtime.CompilerServices;
+using Classes;
 
 namespace LP1___Projeto_Final.Notas
 {

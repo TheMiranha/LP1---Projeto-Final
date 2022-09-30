@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LP1___Projeto_Final.Notas
+namespace Classes
 {
-    internal class Nota
+    public class Nota
     {
         public string Title { get; set; }
         public string Description { get; set; }
