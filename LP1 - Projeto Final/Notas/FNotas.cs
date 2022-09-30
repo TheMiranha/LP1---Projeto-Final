@@ -1,16 +1,5 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
-using System;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Classes;
 
 namespace LP1___Projeto_Final.Notas
@@ -26,30 +15,36 @@ namespace LP1___Projeto_Final.Notas
             materialSkinManager.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
+        NotasDAO notasDAO = new NotasDAO();
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //DateTime data = DateTime.Now - TimeSpan.FromDays(1);
-            //Nota temp = new Nota("Título", "Desc", data, true);
-            //MaterialCard modelo = generateModelo(temp);
-            //this.LP.Controls.Add(modelo);
             MaterialForm fadd = new FNotaAdd(UpdateNotas);
+            UpdateNotas();
             fadd.Show();
         }
 
-        public void AddNota(string title, string description, DateTime date, Boolean check)
+        private int UpdateNotas(Nota x)
         {
-            Nota temp = new Nota(title, description, date, check);
-            Manager.AddNota(temp);
-            UpdateNotas();
+            notasDAO.Create(x);
+            this.LP.Controls.Clear();
+            List<Nota> notas = notasDAO.List();
+            foreach (Nota nota in notas)
+            {
+                MaterialCard card = generateModelo(nota);
+                this.LP.Controls.Add(card);
+            }
+            return 0;
         }
 
         private int UpdateNotas()
         {
             this.LP.Controls.Clear();
-            foreach (Nota temp in Manager.notas)
+            List<Nota> notas = notasDAO.List();
+            foreach (Nota nota in notas)
             {
-                MaterialCard model = generateModelo(temp);
-                this.LP.Controls.Add(model);
+                MaterialCard card = generateModelo(nota);
+                this.LP.Controls.Add(card);
             }
             return 0;
         }
@@ -139,6 +134,11 @@ namespace LP1___Projeto_Final.Notas
             materialCard1.Controls.Add(Modelo_Card_Title);
             materialCard1.Controls.Add(Modelo_Card_Button);
             return materialCard1;
+        }
+
+        private void FNotas_Load(object sender, EventArgs e)
+        {
+            UpdateNotas();
         }
     }
 }

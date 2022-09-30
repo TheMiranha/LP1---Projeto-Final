@@ -169,6 +169,7 @@
             this.Controls.Add(this.TBTitle);
             this.Name = "FNotaAdd";
             this.Text = "Adicionar Nota";
+            this.Load += new System.EventHandler(this.FNotaAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

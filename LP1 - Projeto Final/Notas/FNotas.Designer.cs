@@ -55,20 +55,21 @@
             // LP
             // 
             this.LP.AutoScroll = true;
-            this.LP.Location = new System.Drawing.Point(6, 86);
+            this.LP.Location = new System.Drawing.Point(10, 67);
             this.LP.Name = "LP";
-            this.LP.Size = new System.Drawing.Size(1445, 500);
+            this.LP.Size = new System.Drawing.Size(822, 519);
             this.LP.TabIndex = 3;
             // 
             // FNotas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(745, 651);
+            this.ClientSize = new System.Drawing.Size(838, 651);
             this.Controls.Add(this.LP);
             this.Controls.Add(this.btnAdd);
             this.Name = "FNotas";
             this.Text = "Suas Notas";
+            this.Load += new System.EventHandler(this.FNotas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

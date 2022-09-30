@@ -7,8 +7,10 @@ namespace LP1___Projeto_Final.Notas
 {
     public partial class FNotaAdd : MaterialForm
     {
-        Func<int> UpdateFunction;
-        public FNotaAdd(Func<int> UpdateFunction)
+        Func<Nota, int> UpdateFunction;
+
+ 
+        public FNotaAdd(Func<Nota, int> UpdateFunction)
         {
             InitializeComponent();
             var materialSkinManager = MaterialSkinManager.Instance;
@@ -33,9 +35,13 @@ namespace LP1___Projeto_Final.Notas
             string description = MTDescription.Text;
             DateTime date = DatePickerDate.Value.Date;
             Nota nota = new Nota(title, description, date);
-            Manager.AddNota(nota);
-            this.UpdateFunction();
+            this.UpdateFunction(nota);
             this.Close();
+        }
+
+        private void FNotaAdd_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
